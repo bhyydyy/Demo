@@ -1,0 +1,86 @@
+# ==========================================
+# Configuration for Deep Graph Clustering
+# ==========================================
+
+Cora:
+  # --- 基础训练参数 ---
+  learning_rate: 0.0005
+  weight_decay: 0.00001
+  epochs_pretrain: 200
+  epochs_finetune: 200
+  runs: 5
+  
+  # --- 数据增强参数 (对齐 GRACE 最优设置) ---
+  drop_edge_1: 0.2
+  drop_edge_2: 0.4
+  drop_feat_1: 0.3
+  drop_feat_2: 0.4
+  
+  # --- 损失函数参数 ---
+  tau: 0.4             # 对比学习 InfoNCE 温度系数
+  k_neighbors: 5       # 动态构图与掩码重构的 Top-K 边数量
+  
+  # --- 网络维度设置 ---
+  gcn_hidden: 512
+  z_dim: 256           # GCN 基础特征输出维度
+  proj_hidden: 256     # 投影头隐藏层
+  proj_out: 128        # 投影头输出维度 (用于对比)
+  gat_hidden: 128
+  h_dim: 64            # GAT 高阶特征输出维度 (用于重构)
+
+CiteSeer:
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  epochs_pretrain: 200
+  epochs_finetune: 200
+  runs: 5
+  drop_edge_1: 0.2
+  drop_edge_2: 0.0
+  drop_feat_1: 0.3
+  drop_feat_2: 0.2
+  tau: 0.9
+  k_neighbors: 5
+  gcn_hidden: 512
+  z_dim: 256
+  proj_hidden: 256
+  proj_out: 128
+  gat_hidden: 128
+  h_dim: 64
+
+PubMed:
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  epochs_pretrain: 400   # PubMed 图较大，适当增加预训练轮数
+  epochs_finetune: 400
+  runs: 5
+  drop_edge_1: 0.4
+  drop_edge_2: 0.1
+  drop_feat_1: 0.0
+  drop_feat_2: 0.2
+  tau: 0.7
+  k_neighbors: 10        # 节点变多，可以适当提高 KNN 邻居数
+  gcn_hidden: 512
+  z_dim: 256
+  proj_hidden: 256
+  proj_out: 128
+  gat_hidden: 128
+  h_dim: 64
+
+DBLP:
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  epochs_pretrain: 300
+  epochs_finetune: 300
+  runs: 5
+  drop_edge_1: 0.1
+  drop_edge_2: 0.4
+  drop_feat_1: 0.1
+  drop_feat_2: 0.0
+  tau: 0.7
+  k_neighbors: 5
+  gcn_hidden: 512
+  z_dim: 256
+  proj_hidden: 256
+  proj_out: 128
+  gat_hidden: 128
+  h_dim: 64
